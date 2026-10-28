@@ -13,6 +13,14 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<BdGrsContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BDGrsConnection")));
 builder.Services.AddControllers();
 builder.Services.AddScoped<GrsRepository>();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler =
+            System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
+
 var app = builder.Build();
 
 

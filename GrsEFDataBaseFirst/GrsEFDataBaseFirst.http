@@ -5,8 +5,15 @@ Accept: application/json
 
 ###
 
-GET {{GrsEFDataBaseFirst_HostAddress}}/api/Grs
+GET {{GrsEFDataBaseFirst_HostAddress}}/api/Grs/lasGrs
 Accept: application/json
 
 ###
+GET {{GrsEFDataBaseFirst_HostAddress}}/api/Grs/GrsConSusEtapas
+Accept: application/json
+
+###
+
+GET {{GrsEFDataBaseFirst_HostAddress}}/api/Grs/GrsConSusEtapasDto
+Accept: application/json
 
