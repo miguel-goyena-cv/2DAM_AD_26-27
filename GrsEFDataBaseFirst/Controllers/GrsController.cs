@@ -14,11 +14,11 @@ namespace GrsEFDataBaseFirst.Controllers
             _grsRepository = grsRepository;
         }
         [HttpGet("lasGrs")]
-        public async Task<ActionResult<List<Gr>>> GetGrs()
+        public  ActionResult<List<Gr>> GetGrs()
         {
             try
             {
-                var listaGrs = await _grsRepository.GetGrs();
+                var listaGrs =  _grsRepository.GetGrs();
                 return Ok(listaGrs);
             }
             catch (Exception exc)
@@ -30,11 +30,11 @@ namespace GrsEFDataBaseFirst.Controllers
             }
         }
         [HttpGet("GrsConEtapas")]
-        public async Task<ActionResult<List<Gr>>> GetGrsConEtapas()
+        public  ActionResult<List<Gr>> GetGrsConEtapas()
         {
             try
             {
-                var listaGrs = await _grsRepository.GetGrsConEtapas();
+                var listaGrs =  _grsRepository.GetGrsConEtapas();
                 return Ok(listaGrs);
             }
             catch (Exception exc)
@@ -47,11 +47,11 @@ namespace GrsEFDataBaseFirst.Controllers
         }
 
         [HttpGet("GrsConSusEtapas")]
-        public async Task<ActionResult<List<Gr>>> GetGrsConSusEtapas()
+        public  ActionResult<List<Gr>> GetGrsConSusEtapas()
         {
             try
             {
-                var listaGrs = await _grsRepository.GetGrsConSusEtapas();
+                var listaGrs =  _grsRepository.GetGrsConSusEtapas();
                 return Ok(listaGrs);
             }
             catch (Exception exc)
@@ -63,11 +63,11 @@ namespace GrsEFDataBaseFirst.Controllers
             }
         }
         [HttpGet("GrsConSusEtapasDTO")]
-        public async Task<ActionResult<List<Gr>>> GetGrsConSusEtapasDTO()
+        public  ActionResult<List<Gr>> GetGrsConSusEtapasDTO()
         {
             try
             {
-                var listaGrs = await _grsRepository.GetGrsConSusEtapasDto();
+                var listaGrs =  _grsRepository.GetGrsConSusEtapasDto();
                 return Ok(listaGrs);
             }
             catch (Exception exc)

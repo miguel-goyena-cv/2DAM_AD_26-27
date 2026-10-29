@@ -14,29 +14,29 @@ namespace GrsEFDataBaseFirst.Repositories
         {
             _bdGrsContext = bdGrsContext;
         }
-        public async Task<List<Gr>> GetGrs() // Carga de forma asíncrona sin datos relacionados
+        public  List<Gr> GetGrs() // Carga de forma asíncrona sin datos relacionados
         {
-            return await _bdGrsContext.Grs.ToListAsync();
+            return  _bdGrsContext.Grs.ToList();
         }
-        public async Task<List<Gr>> GetGrsConEtapas() // Carga de forma asíncrona sin datos relacionados
+        public  List<Gr> GetGrsConEtapas() // Carga de forma asíncrona sin datos relacionados
         {
-            return await _bdGrsContext.Grs
+            return  _bdGrsContext.Grs
                       .Where(g=>g.Etapas.Count > 0)
                       .OrderBy(g=>g.Nombre)
-                      .ToListAsync();
+                      .ToList();
         }
-        public async Task<List<Gr>> GetGrsConSusEtapas()
+        public  List<Gr> GetGrsConSusEtapas()
         {
-            return await _bdGrsContext.Grs
+            return  _bdGrsContext.Grs
                                   .Include(g => g.Etapas)
-                                  .ToListAsync();
+                                  .ToList();
         }
-        public async Task<List<GrConEtapasDTO>> GetGrsConSusEtapasDto()
+        public  List<GrConEtapasDTO> GetGrsConSusEtapasDto()
         {
             // No necesita .Include(g => g.Etapas)
             // Al usar Select(), EF Core analiza los campos que estás intentando asignar.
             // Como esta leyendo datos de etapas y zonas, con g.Etapas y  e.IdZonaNavigation.Nombre el traductor de EF Core comprende automáticamente que necesita incluir esas tablas en la consulta SQL y genera los JOIN correspondientes sin necesidad de decírselo de forma manual.
-            return await _bdGrsContext.Grs
+            return  _bdGrsContext.Grs
               .Select(g => new GrConEtapasDTO
               {
                   Id = g.Id,
@@ -49,7 +49,7 @@ namespace GrsEFDataBaseFirst.Repositories
                       Km = e.Km,
                       Desnivel = e.Desnivel
                   }).ToList()
-              }).ToListAsync();
+              }).ToList();
         }
 
 
