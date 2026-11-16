@@ -1,0 +1,41 @@
+@GrsEF_HostAddress = http://localhost:5256
+
+
+###
+
+GET {{GrsEF_HostAddress}}/api/Grs/lasGrs
+Accept: application/json
+
+###
+GET {{GrsEF_HostAddress}}/api/Grs/GrsConSusEtapas
+Accept: application/json
+
+###
+
+GET {{GrsEF_HostAddress}}/api/Grs/GrsConSusEtapasDto
+Accept: application/json
+
+
+### GET: Error: No existe la Gr
+GET {{GrsEF_HostAddress}}/api/Etapas/GR251/1
+Accept: application/json
+
+### GET: Error: No existe la etapa 15 en la Gr
+GET {{GrsEF_HostAddress}}/api/Etapas/GR1/15
+Accept: application/json
+
+### GET: Válida
+GET {{GrsEF_HostAddress}}/api/Etapas/GR11/1
+Accept: application/json
+
+
+###
+
+
+
+// GET: api/etapas/GR11/1
+
+GET {{GrsEF_HostAddress}}/api/Etapas/GR11/1
+Accept: application/json
+
+
