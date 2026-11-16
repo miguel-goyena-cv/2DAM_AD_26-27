@@ -1,0 +1,45 @@
+@Park4V_HostAddress = http://localhost:5069
+
+//CIudades OK
+GET {{Park4V_HostAddress}}/ciudades/
+Accept: application/json
+
+###
+//Zonas OK
+GET {{Park4V_HostAddress}}/zonas?idCiudad=1
+Accept: application/json
+
+###
+//ZOnas KO
+GET {{Park4V_HostAddress}}/zonas?idCiudad=888
+Accept: application/json
+
+###
+//ZOnas KO
+GET {{Park4V_HostAddress}}/zonas
+Accept: application/json
+
+###
+//CLientes Ordenados
+GET {{Park4V_HostAddress}}/clientes
+Accept: application/json
+
+###
+//CLientes Ordenados desc
+GET {{Park4V_HostAddress}}/clientes?orden=desc
+Accept: application/json
+
+###
+//CLientes Ordenados error
+GET {{Park4V_HostAddress}}/clientes?orden=descsss
+Accept: application/json
+
+###
+//CLientes por email
+GET {{Park4V_HostAddress}}/clientes/anne_arance@tuempresa.com
+Accept: application/json
+
+###
+//CLientes por email
+GET {{Park4V_HostAddress}}/clientes/annce@tuempresa.com
+Accept: application/json

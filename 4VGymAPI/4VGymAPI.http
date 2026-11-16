@@ -1,4 +1,4 @@
-@_4VGymAPI_HostAddress = http://localhost:5117
+@_4VGymAPI_HostAddress = https://localhost:7061
 
 GET {{_4VGymAPI_HostAddress}}/activity-types
 Accept: application/json
