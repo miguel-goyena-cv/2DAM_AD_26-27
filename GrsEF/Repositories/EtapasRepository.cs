@@ -25,7 +25,7 @@ namespace GrsEF.Repositories
             }
             EtapaDto? etapaDto = _bdGrsContext.Etapas
                              .Where(e => e.IdGr == idGr && e.NumEtapa == numEtapa)
-                             .Include(e => e.IdGrNavigation) // No hace falta por Select
+                             .Include(e => e.IdZonaNavigation) // No hace falta por Select
                              .Select(e => new EtapaDto
                              {
                                  IdGr = e.IdGr,
