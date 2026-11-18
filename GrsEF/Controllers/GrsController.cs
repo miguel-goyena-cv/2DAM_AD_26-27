@@ -1,4 +1,5 @@
 ﻿using _4VGymAPI.Models;
+using GrsEF.Dtos;
 using GrsEF.Models;
 using GrsEF.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +19,11 @@ namespace GrsEF.Controllers
         [HttpGet("lasGrs")]
         [ProducesResponseType(typeof(List<Gr>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(RespuestaError), StatusCodes.Status500InternalServerError)]
-        public  ActionResult<List<Gr>> GetGrs()
+        public ActionResult<List<Gr>> GetGrs()
         {
             try
             {
-                var listaGrs =  _grsRepository.GetGrs();
+                var listaGrs = _grsRepository.GetGrs();
                 return Ok(listaGrs);
             }
             catch (Exception exc)
@@ -37,11 +38,11 @@ namespace GrsEF.Controllers
         [HttpGet("GrsConEtapas")]
         [ProducesResponseType(typeof(List<Gr>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(RespuestaError), StatusCodes.Status500InternalServerError)]
-        public  ActionResult<List<Gr>> ObtenerGrsConEtapas()
+        public ActionResult<List<Gr>> ObtenerGrsConEtapas()
         {
             try
             {
-                var listaGrs =  _grsRepository.ObtenerGrsConEtapas();
+                var listaGrs = _grsRepository.ObtenerGrsConEtapas();
                 return Ok(listaGrs);
             }
             catch (Exception exc)
@@ -56,11 +57,11 @@ namespace GrsEF.Controllers
         [HttpGet("GrsConSusEtapas")]
         [ProducesResponseType(typeof(List<Gr>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(RespuestaError), StatusCodes.Status500InternalServerError)]
-        public  ActionResult<List<Gr>> ObtenerGrsConSusEtapas()
+        public ActionResult<List<Gr>> ObtenerGrsConSusEtapas()
         {
             try
             {
-                var listaGrs =  _grsRepository.ObtenerGrsConSusEtapas();
+                var listaGrs = _grsRepository.ObtenerGrsConSusEtapas();
                 return Ok(listaGrs);
             }
             catch (Exception exc)
@@ -75,11 +76,11 @@ namespace GrsEF.Controllers
         [HttpGet("GrsConSusEtapasDTO")]
         [ProducesResponseType(typeof(List<Gr>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(RespuestaError), StatusCodes.Status500InternalServerError)]
-        public  ActionResult<List<Gr>> ObtenerGrsConSusEtapasDTO()
+        public ActionResult<List<Gr>> ObtenerGrsConSusEtapasDTO()
         {
             try
             {
-                var listaGrs =  _grsRepository.ObtenerGrsConSusEtapasDto();
+                var listaGrs = _grsRepository.ObtenerGrsConSusEtapasDto();
                 return Ok(listaGrs);
             }
             catch (Exception exc)
@@ -90,7 +91,33 @@ namespace GrsEF.Controllers
                 }
             }
         }
+        [HttpPost]
+        [ProducesResponseType(typeof(Gr), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(RespuestaError), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(RespuestaError), StatusCodes.Status409Conflict)]
 
+        public ActionResult<Gr> CrearÇGr([FromBody] GrCreateDto grDto)
+        {
+            var nuevaGr = new Gr
+            {
+                Id = grDto.Id,
+                Nombre = grDto.Nombre,
+                Descripcion = grDto.Descripcion
+            };
+
+            string error = _grsRepository.Add(nuevaGr);
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                if (error.StartsWith("Ya existe"))
+                {
+                    return Conflict(error);
+                }
+
+                return BadRequest(error);
+            }
+            return StatusCode(201, nuevaGr); // O bien return Ok(nuevaGr);
+
+        }
     }
-
 }

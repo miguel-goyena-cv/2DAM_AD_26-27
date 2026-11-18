@@ -51,6 +51,25 @@ namespace GrsEF.Repositories
                   }).ToList()
               }).ToList();
         }
+        public string Add(Gr gr)
+        {
+            // Aquí podrían ir los controles a realizar de los campos        
+            bool existe = _bdGrsContext.Grs.Any(g => g.Id == gr.Id);
+            if (existe)
+            {
+                return $"Ya existe una GR registrada con el Id '{gr.Id}'.";
+            }
+            try
+            {
+                _bdGrsContext.Grs.Add(gr); // se añade a la colección del modelo correspondiente
+                _bdGrsContext.SaveChanges(); // se guarda en la base de datos
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                return $"Error al guardar en la base de datos: {ex.Message}";
+            }
+        }
 
 
 

@@ -32,10 +32,30 @@ Accept: application/json
 ###
 
 
-
 // GET: api/etapas/GR11/1
 
 GET {{GrsEF_HostAddress}}/api/Etapas/GR11/1
 Accept: application/json
+
+### Error: Crear una nueva GR Existe la Gr
+POST {{GrsEF_HostAddress}}/api/Grs
+Content-Type: application/json
+
+{
+  "id": "GR11",
+  "nombre": "Senda Pirenaica",
+  "descripcion": "Ruta de gran recorrido..."
+}
+
+
+### Crea una nueva Gr
+POST {{GrsEF_HostAddress}}/api/Grs
+Content-Type: application/json
+
+{
+  "id": "GR99",
+  "nombre": "Por las Arribes del Duero",
+  "descripcion": "Ruta de gran recorrido..."
+}
 
 
